@@ -24,7 +24,7 @@ def check():
 	try:
 		process_inbox()
 	except:
-		Text.sendText("Error")
+		Text.sendText("Error", sender, emailPass, phonenum)
 
 def process_inbox():
 

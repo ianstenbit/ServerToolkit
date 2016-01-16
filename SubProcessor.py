@@ -46,7 +46,7 @@ class SubProcessor():
         # change directory to current (as defined by previously executed commands)
         os.chdir(self.cwd)
 
-        # handle different types of commands
+        # handle directory changes
         args = command.split(" ")
         dirChanged = False
         if (args[0] == "cd"):

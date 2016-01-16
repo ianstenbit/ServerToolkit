@@ -5,13 +5,33 @@ class SubProcessor():
     
     def __init__(self, cwd):
         self.cwd = cwd
-        self.users = {"3038153710@mms.att.net": "hackrice2016"}
+        try:
+            config = open('config.txt', 'r')
+            print config.readline().strip()
+            print config.readline().strip()
+            usr = config.readline().strip()
+            print usr
+            pss = config.readline().strip()
+            print pss
+            self.users = {usr: pss}
+        except IOError:
+            print "IOError - no config file"
+
         self.authorized = False
 
     def authorize(self, user, password):
         correct_pw = ""
         try:
+            password = password.strip()
+            user = user.strip()
+
+            print password
+            print user
+
+            print self.users
+
             correct_pw = self.users[user]
+
             if correct_pw == password:
                 self.authorized = True
                 return "Authorization success."

@@ -8,11 +8,13 @@ from email.mime.multipart import MIMEMultipart
 def sendText(text):
 		
 	
-	file = open('config.txt', 'r')
+	f = open('config.txt', 'r')
 
-	sender = file.readline()
-	password = file.readline()
-	recipient = file.readline()
+	sender = f.readline()
+	password = f.readline()
+	recipient = f.readline()
+
+	f.close()
 
 	#This is a commnent
 	servr = smtplib.SMTP("smtp.gmail.com:587")

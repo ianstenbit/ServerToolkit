@@ -16,6 +16,7 @@ idler = None
 thread = None
 process = SubProcessor.SubProcessor(os.getcwd())
 Text.sendText("Send password.")
+phoneNum = ""
 
 def check():
 	#try:
@@ -52,7 +53,7 @@ def process_inbox():
 
 		response = ""
 		if(not process.authorized):
-			response = process.authorize("3038153710@mms.att.net", msgBody)
+			response = process.authorize(phoneNum, msgBody)
 		else:
 			response = process.run(msgBody);
 		
@@ -91,10 +92,14 @@ def idle():
             		dosync()
 
 
+config = open('config.txt', 'r')
+
 M = imaplib2.IMAP4_SSL('imap.gmail.com')
-M.login('ianlinuxserver@gmail.com', 'LinuxMint2015!')
+M.login(config.readline(), config.readline())
 M.select("inbox")
 check()
+
+phoneNum = config.readline().strip()
 
 #init
 thread = Thread(target=idle)

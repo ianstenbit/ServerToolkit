@@ -36,7 +36,7 @@ class SubProcessor():
 
         # handle incorrect commands
         try: 
-            output = subprocess.check_output(command, shell=True);
+            output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True);
         except subprocess.CalledProcessError as e:
             output = e.output
 
@@ -44,5 +44,3 @@ class SubProcessor():
         if (dirChanged):
             self.cwd = output.strip()
         return output
-
-#print process.run("sudo rm")

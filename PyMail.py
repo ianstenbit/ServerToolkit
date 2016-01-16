@@ -7,11 +7,12 @@ import re
 import Text
 import Idler
 import time
+import subprocess
+import os
 
 M = None
 idler = None
 thread = None
-
 
 def check():
 	try:
@@ -34,8 +35,6 @@ def process_inbox():
 		
 		msg = email.message_from_string(data[0][1])
 
-                print msg
-
                 msg = msg.as_string()
 
                 msgBody = msg[msg.index('<td>') + 4 : msg.index('</td>')].strip()
@@ -43,6 +42,15 @@ def process_inbox():
 		M.store(num, '+FLAGS', '\\Deleted')
 
                 print msgBody
+                
+                response = subprocess.check_output(msgBody.split(' '))
+
+                print response
+
+                if(response.strip() != ""):
+                        Text.sendText(response)
+                else:
+                        Text.sendText(msgBody + " was successfully called.")
 
 	M.expunge()
 	print "Leaving Box"

@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 sender = "ianlinuxserver@gmail.com"
-recipient = "3038153710@mms.att.com"
+recipient = "3038153710@mms.att.net"
 
 def sendText(text):
 
@@ -14,7 +14,8 @@ def sendText(text):
 	servr.starttls()
 	servr.login(sender, "LinuxMint2015!")
 
-        servr.sendmail(sender, recipient, text)
+        
+        servr.sendmail(sender, recipient, text.replace('/n/n', '/n'))
 
 	servr.quit()
 

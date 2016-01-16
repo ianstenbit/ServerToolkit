@@ -15,6 +15,7 @@ M = None
 idler = None
 thread = None
 process = SubProcessor.SubProcessor(os.getcwd())
+Text.sendText("Send password.")
 
 def check():
 	#try:
@@ -49,9 +50,12 @@ def process_inbox():
 		
 		M.store(num, '+FLAGS', '\\Deleted')
 
-                print msgBody
-
-                response = process.run(msgBody);
+		response = ""
+		if(not process.authorized):
+			response = process.authorize("3038153710@mms.att.net", msgBody)
+		else:
+			response = process.run(msgBody);
+		
 
                 if(response.strip() != ""):
                         Text.sendText(response)

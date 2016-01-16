@@ -16,7 +16,6 @@ class SubProcessor():
             self.users = {usr: pss}
         except IOError:
             print "IOError - no config file"
-
         self.authorized = False
 
     def authorize(self, user, password):
@@ -55,10 +54,11 @@ class SubProcessor():
             dirChanged = True
 
         # handle incorrect commands
-        try: 
+        try:
             output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True);
         except subprocess.CalledProcessError as e:
             output = e.output
+            print "this command is an error"
 
         # change directory if necessary
         if (dirChanged):

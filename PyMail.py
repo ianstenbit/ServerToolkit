@@ -21,10 +21,10 @@ emailPass = ""
 recipient = ""
 
 def check():
-	#try:
-	process_inbox()
-	#except:
-		#Text.sendText("Error")
+	try:
+		process_inbox()
+	except:
+		Text.sendText("Error")
 
 def process_inbox():
 

@@ -67,13 +67,6 @@ def process_inbox():
 
                 response = ""
 
-                if(msgBody[:2] != "cd"):
-                       command = str("cd " + str(directory) + "; " + msgBody)
-                       print command
-                       response = subprocess.check_output(command, shell=True)
-                
-                print response
-
                 if(response.strip() != ""):
                         Text.sendText(response)
                 else:

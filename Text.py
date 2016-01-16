@@ -9,7 +9,9 @@ sender = "ianlinuxserver@gmail.com"
 recipient = "3038153710@mms.att.net"
 
 def sendText(text):
+		
 
+	#This is a commnent
 	servr = smtplib.SMTP("smtp.gmail.com:587")
 	servr.starttls()
 	servr.login(sender, "LinuxMint2015!")

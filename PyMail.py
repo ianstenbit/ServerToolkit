@@ -25,9 +25,9 @@ def check():
 def process_inbox():
 
 
-        file = open('directory.txt', 'r+')
+        #file = open('directory.txt', 'r+')
 
-        directory = file.read().strip();
+        #directory = file.read().strip();
         
 	rv, data = M.search(None, "(UNSEEN)")
 	if rv != 'OK':
@@ -51,9 +51,7 @@ def process_inbox():
 
                 print msgBody
 
-                print process.run(msgBody);
-
-                response = ""
+                response = process.run(msgBody);
 
                 if(response.strip() != ""):
                         Text.sendText(response)

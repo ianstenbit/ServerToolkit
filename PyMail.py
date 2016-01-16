@@ -15,12 +15,18 @@ idler = None
 thread = None
 
 def check():
-	try:
-		process_inbox()
-	except:
-		Text.sendText("Error")
+	#try:
+	process_inbox()
+	#except:
+		#Text.sendText("Error")
 
 def process_inbox():
+
+
+        file = open('directory.txt', 'r+')
+
+        directory = file.read().strip();
+        
 	rv, data = M.search(None, "(UNSEEN)")
 	if rv != 'OK':
 		print "No Messages Found!"
@@ -42,9 +48,26 @@ def process_inbox():
 		M.store(num, '+FLAGS', '\\Deleted')
 
                 print msgBody
-                
-                response = subprocess.check_output(msgBody.split(' '))
 
+                if(msgBody[:2] == "cd"):
+                       print msgBody.split(' ')[1]
+                        
+                       directory += msgBody.split(' ')[1]
+                       open('directory.txt', 'w').close()
+                       if(directory[-1] != '/'):
+                               directory += '/'
+
+                       file.write(directory)
+
+                file.close()
+
+                response = ""
+
+                if(msgBody[:2] != "cd"):
+                       command = str("cd " + str(directory) + "; " + msgBody)
+                       print command
+                       response = subprocess.check_output(command, shell=True)
+                
                 print response
 
                 if(response.strip() != ""):

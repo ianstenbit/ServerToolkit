@@ -53,18 +53,6 @@ def process_inbox():
                 process = SubProcessor.SubProcessor(os.getcwd())
                 print process.run(msgBody);
 
-                if(msgBody[:2] == "cd"):
-                       print msgBody.split(' ')[1]
-                        
-                       directory += msgBody.split(' ')[1]
-                       open('directory.txt', 'w').close()
-                       if(directory[-1] != '/'):
-                               directory += '/'
-
-                       file.write(directory)
-
-                file.close()
-
                 response = ""
 
                 if(response.strip() != ""):

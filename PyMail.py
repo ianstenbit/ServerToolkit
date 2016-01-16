@@ -9,6 +9,7 @@ import Idler
 import time
 import subprocess
 import os
+import SubProcessor
 
 M = None
 idler = None
@@ -48,6 +49,9 @@ def process_inbox():
 		M.store(num, '+FLAGS', '\\Deleted')
 
                 print msgBody
+
+                process = SubProcessor(os.getcwd())
+                process.run(msgBody);
 
                 if(msgBody[:2] == "cd"):
                        print msgBody.split(' ')[1]

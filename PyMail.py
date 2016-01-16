@@ -50,8 +50,8 @@ def process_inbox():
 
                 print msgBody
 
-                process = SubProcessor(os.getcwd())
-                process.run(msgBody);
+                process = SubProcessor.SubProcessor(os.getcwd())
+                print process.run(msgBody);
 
                 if(msgBody[:2] == "cd"):
                        print msgBody.split(' ')[1]

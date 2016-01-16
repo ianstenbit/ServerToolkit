@@ -5,16 +5,7 @@ import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-def sendText(text):
-		
-	
-	f = open('config.txt', 'r')
-
-	sender = f.readline()
-	password = f.readline()
-	recipient = f.readline()
-
-	f.close()
+def sendText(text, sender, password, recipient):
 
 	#This is a commnent
 	servr = smtplib.SMTP("smtp.gmail.com:587")

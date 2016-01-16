@@ -15,8 +15,10 @@ M = None
 idler = None
 thread = None
 process = SubProcessor.SubProcessor(os.getcwd())
-Text.sendText("Send password.")
-phoneNum = ""
+phonenum = ""
+sender = ""
+emailPass = ""
+recipient = ""
 
 def check():
 	#try:
@@ -53,15 +55,15 @@ def process_inbox():
 
 		response = ""
 		if(not process.authorized):
-			response = process.authorize(phoneNum, msgBody)
+			response = process.authorize(phonenum, msgBody)
 		else:
 			response = process.run(msgBody);
 		
 
                 if(response.strip() != ""):
-                        Text.sendText(response)
+                        Text.sendText(response, sender, emailPass, phonenum)
                 else:
-                        Text.sendText(msgBody + " was successfully called.")
+                        Text.sendText(msgBody + " was successfully called.", sender, emailPass, phonenum)
 
 	M.expunge()
 	print "Leaving Box"
@@ -94,12 +96,17 @@ def idle():
 
 config = open('config.txt', 'r')
 
+sender = config.readline()
+emailPass = config.readline()
+phonenum = config.readline().strip()
+
+Text.sendText("Send password.", sender, emailPass, phonenum)
+
+
 M = imaplib2.IMAP4_SSL('imap.gmail.com')
-M.login(config.readline(), config.readline())
+M.login(sender, emailPass)
 M.select("inbox")
 check()
-
-phoneNum = config.readline().strip()
 
 #init
 thread = Thread(target=idle)

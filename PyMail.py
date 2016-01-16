@@ -14,6 +14,7 @@ import SubProcessor
 M = None
 idler = None
 thread = None
+process = SubProcessor.SubProcessor(os.getcwd())
 
 def check():
 	#try:
@@ -50,7 +51,6 @@ def process_inbox():
 
                 print msgBody
 
-                process = SubProcessor.SubProcessor(os.getcwd())
                 print process.run(msgBody);
 
                 response = ""

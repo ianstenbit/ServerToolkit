@@ -50,17 +50,17 @@ class SubProcessor():
         args = command.split(" ")
         dirChanged = False
         if (args[0] == "cd"):
-            command += "; pwd"
+            #command += "; pwd"
             dirChanged = True
 
         # handle incorrect commands
         try:
             output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True);
         except subprocess.CalledProcessError as e:
-            output = e.output
-            print "this command is an error"
+            output = e.output.replace(":", "")
+            dirChanged = False
 
         # change directory if necessary
         if (dirChanged):
-            self.cwd = output.strip()
+            self.cwd = subprocess.check_output(command+"; pwd", shell=True).strip()
         return output

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import smtplib
-import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 

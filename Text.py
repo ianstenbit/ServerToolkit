@@ -5,16 +5,21 @@ import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-sender = "ianlinuxserver@gmail.com"
-recipient = "3038153710@mms.att.net"
-
 def sendText(text):
 		
+	
+	file = open('config.txt', 'r')
+
+	content = file.read().split('/n')
+
+	sender = content[0]
+	password = content[1]
+	recipient = content[2]
 
 	#This is a commnent
 	servr = smtplib.SMTP("smtp.gmail.com:587")
 	servr.starttls()
-	servr.login(sender, "LinuxMint2015!")
+	servr.login(sender, password)
 
         
         servr.sendmail(sender, recipient, text.replace('/n/n', '/n'))

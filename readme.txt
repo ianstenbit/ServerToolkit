@@ -11,3 +11,5 @@ To use for yourself:
 
 The contact info in the current config.txt file is fake. 
 Do not try to contact the email or phone number in the config file.
+
+Link to a video demo: https://devpost.com/software/ssh-over-sms
